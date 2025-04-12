@@ -11,11 +11,17 @@
     --spacing: 8px;
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --radius-xl: 0.75rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --rose-800: #7a284e;
+    --rose-50: #fff7fb;
     --stone-900: #312e2c;
     --stone-600: #5f564d;
     --font-outfit: 'Outfit', sans-serif;
@@ -168,11 +174,29 @@
   }
 }
 @layer utilities {
+  .my-4 {
+    margin-block: calc(var(--spacing) * 4);
+  }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
+  .ml-4 {
+    margin-left: calc(var(--spacing) * 4);
+  }
   .box-border {
     box-sizing: border-box;
   }
   .contents {
     display: contents;
+  }
+  .flex {
+    display: flex;
   }
   .grid {
     display: grid;
@@ -186,8 +210,20 @@
   .min-w-full {
     min-width: 100%;
   }
+  .list-inside {
+    list-style-position: inside;
+  }
+  .list-disc {
+    list-style-type: disc;
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+  .bg-\(--rose-50\) {
+    background-color: var(--rose-50);
   }
   .p-3 {
     padding: calc(var(--spacing) * 3);
@@ -197,6 +233,15 @@
   }
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
+  }
+  .pl-1 {
+    padding-left: calc(var(--spacing) * 1);
+  }
+  .pl-2 {
+    padding-left: calc(var(--spacing) * 2);
+  }
+  .text-left {
+    text-align: left;
   }
   .font-\(family-name\:--font-outfit\) {
     font-family: var(--font-outfit);
@@ -211,6 +256,10 @@
   .text-base {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .leading-1\.5 {
     --tw-leading: calc(var(--spacing) * 1.5);
@@ -232,8 +281,15 @@
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
   }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
   .text-\(--gra\) {
     color: var(--gra);
+  }
+  .text-\(--rose-800\) {
+    color: var(--rose-800);
   }
   .text-\(--stone-600\) {
     color: var(--stone-600);
@@ -244,6 +300,12 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .after\:mr-1 {
+    &::after {
+      content: var(--tw-content);
+      margin-right: calc(var(--spacing) * 1);
+    }
   }
 }
 @property --tw-leading {
@@ -259,12 +321,18 @@
   inherits: false;
   initial-value: solid;
 }
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-outline-style: solid;
+      --tw-content: "";
     }
   }
 }
